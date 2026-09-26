@@ -1,4 +1,4 @@
-package com.example.practica05
+package com.uas.practica05
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

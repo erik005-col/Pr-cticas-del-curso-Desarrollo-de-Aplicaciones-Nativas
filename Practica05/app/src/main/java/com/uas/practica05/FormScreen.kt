@@ -1,4 +1,4 @@
-package com.example.practica05
+package com.uas.practica05
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.practica05.data.PreferencesManager
+import com.uas.practica05.data.PreferencesManager
 
 @Composable
 fun FormScreen() {
