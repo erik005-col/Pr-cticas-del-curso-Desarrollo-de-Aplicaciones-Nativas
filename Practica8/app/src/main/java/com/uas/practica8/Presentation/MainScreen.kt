@@ -12,6 +12,9 @@ import com.uas.practica8.data.Usuario
 import com.uas.practica8.domain.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.ui.Alignment
 
 @Composable
 fun MainScreen() {
@@ -62,10 +65,26 @@ fun MainScreen() {
         LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             items(usuarios) { usuario ->
                 Card(modifier = Modifier.fillMaxWidth()) {
-                    Text(
-                        text = "ID: ${usuario.id} | Nombre: ${usuario.nombre}",
-                        modifier = Modifier.padding(16.dp)
-                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 16.dp, end = 8.dp, top = 8.dp, bottom = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text = "ID: ${usuario.id} | Nombre: ${usuario.nombre}")
+
+                        IconButton(onClick = {
+                            coroutineScope.launch(Dispatchers.IO) {
+                                dao.eliminar(usuario)
+                            }
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = "Eliminar usuario"
+                            )
+                        }
+                    }
                 }
             }
         }
