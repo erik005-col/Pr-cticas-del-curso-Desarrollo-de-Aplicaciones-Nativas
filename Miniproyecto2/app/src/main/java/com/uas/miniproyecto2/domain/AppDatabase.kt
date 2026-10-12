@@ -1,0 +1,30 @@
+package com.uas.miniproyecto2.domain
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.uas.miniproyecto2.data.Tarea
+import com.uas.miniproyecto2.data.TareaDao
+
+@Database(entities = [Tarea::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun tareaDao(): TareaDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+
+        fun getDatabase(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "tareas_db"
+                ).build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}

@@ -26,3 +26,6 @@ build/
 */.cxx
 */**/.cxx
 captures/
+
+*/.idea/
+*/**/.idea/
